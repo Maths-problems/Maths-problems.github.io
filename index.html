@@ -21,7 +21,7 @@
 				}else {
 					
 					// %%%%%%%%% launch options %%%%%%%%%%%%
-					
+
 					const relayId = Math.floor(Math.random() * 3);
 					window.eaglercraftXOpts = {
 						demoMode: false,
@@ -30,7 +30,12 @@
 						localesURI: "lang/",
 						worldsDB: "worlds",
 						servers: [
-							/* example: { addr: "ws://localhost:8081/", name: "Local test server" } */
+							{ addr: "wss://mc.arch.lol", name: "ArchMC" },
+							{ addr: "wss://mc.asspixel.net", name: "Asspixel" },
+							{ addr: "wss://mc.lamplifesteal.xyz", name: "Clever Teaching" },
+							{ addr: "wss://eag.zelz.info", name: "Zelz's EaglerCraft" },
+							{ addr: "wss://sus.shhnowisnottheti.me", name: "CreaCraft" },
+							{ addr: "wss://mc.theludos.co", name: "Myth SMP" }
 						],
 						relays: [
 							{ addr: "wss://relay.deev.is/", comment: "lax1dude relay #1", primary: relayId == 0 },
@@ -38,18 +43,18 @@
 							{ addr: "wss://relay.shhnowisnottheti.me/", comment: "ayunami relay #1", primary: relayId == 2 }
 						]
 					};
-					
+
 					// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-					
+
 					var q = window.location.search;
 					if(typeof q === "string" && q.startsWith("?")) {
 						q = new URLSearchParams(q);
 						var s = q.get("server");
 						if(s) window.eaglercraftXOpts.joinServer = s;
 					}
-					
+
 					main();
-					
+
 				}
 			});
 		</script>
