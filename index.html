@@ -9,18 +9,16 @@
 <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 <style>
 :root {
-  --bg:#030712;
-  --panel:#0a0f1e;
-  --card:#111827;
-  --text:#e5e7eb;
-  --accent:#3b82f6;
-  --accent2:#22d3ee;
-  --accent3:#a855f7;
+  --bg:#030712; --panel:#0a0f1e; --card:#111827; --text:#e5e7eb; --accent:#3b82f6; --accent2:#22d3ee; --accent3:#a855f7;
 }
 body {margin:0; font-family:"Poppins",sans-serif; background:radial-gradient(circle at 20% 20%, #0f172a, #020617 70%); color:var(--text); padding:40px;}
-.container {max-width:1100px; margin:auto; backdrop-filter:blur(20px); background:rgba(255,255,255,0.03); border-radius:20px; padding:30px; border:1px solid rgba(255,255,255,0.05);}
+#login-container, #main-container {max-width:1100px; margin:auto; backdrop-filter:blur(20px); background:rgba(255,255,255,0.03); border-radius:20px; padding:30px; border:1px solid rgba(255,255,255,0.05);}
 h1 {font-size:36px; font-weight:700; background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3)); -webkit-background-clip:text;color:transparent; margin-bottom:16px;}
 .sub {color:#9ca3af;margin-bottom:30px;}
+input {width:100%; padding:12px; margin-bottom:12px; border-radius:8px; border:1px solid #333; background:rgba(0,0,0,0.8); color:#e5e7eb; font-family:monospace;}
+button {padding:12px; border:none; border-radius:8px; background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#020617; cursor:pointer; font-weight:600;}
+#error {color:#f87171; margin-bottom:12px;}
+#main-container {display:none;}
 .phase {background:rgba(255,255,255,0.03); padding:18px 20px; border-radius:14px; border:1px solid rgba(255,255,255,0.06); margin-bottom:20px; transition:0.3s;}
 .phase:hover {transform:translateY(-6px) scale(1.02); box-shadow:0 12px 36px rgba(0,0,0,0.45);}
 h2 {font-size:24px; background:linear-gradient(90deg,var(--accent),var(--accent3)); -webkit-background-clip:text;color:transparent;margin-bottom:12px;}
@@ -39,63 +37,66 @@ h2 {font-size:24px; background:linear-gradient(90deg,var(--accent),var(--accent3
 </style>
 </head>
 <body>
-<div class="container">
-<h1>Python → Discord Dev Roadmap</h1>
-<p class="sub">Fully embedded Python interactive roadmap. Experiment with code and save notes for each step!</p>
 
-<!-- ------------------ Phase 1 ------------------ -->
+<!-- Login Page -->
+<div id="login-container">
+<h1>Login</h1>
+<p class="sub">Enter your credentials to access the Python → Discord roadmap.</p>
+<div id="error"></div>
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+<button onclick="checkLogin()">Login</button>
+</div>
+
+<!-- Main Roadmap -->
+<div id="main-container">
+<h1>Python → Discord Dev Roadmap</h1>
+<p class="sub">Experiment with code and save notes for each step!</p>
+
+<!-- ------------------ Phases 1–6 ------------------ -->
 <div class="phase">
 <h2>Phase 1 — Python Fundamentals</h2>
+
 <div class="resource-card" data-id="phase1-1">
 <div class="resource-content">
 <h3>Learn Python Basics</h3>
-<p>Step-by-step: variables, loops, functions, conditionals.</p>
+<p>Variables, loops, functions, conditionals.</p>
 <ol>
 <li>Try examples in the Python terminal below.</li>
 <li>Experiment with print statements, loops, if-else.</li>
 <li>Create a small calculator or text-based program.</li>
 </ol>
 </div>
-<div class="note-section">
-<label for="note-phase1-1">Notes:</label>
-<textarea id="note-phase1-1" placeholder="Type your notes here..."></textarea>
-</div>
+<div class="note-section"><label>Notes:</label><textarea id="note-phase1-1" placeholder="Type your notes here..."></textarea></div>
 </div>
 
 <div class="resource-card" data-id="phase1-2">
 <div class="resource-content">
 <h3>Practice Small Projects</h3>
-<p>Mini-projects help reinforce learning.</p>
+<p>Mini-projects reinforce learning.</p>
 <ol>
 <li>Guess the number game.</li>
 <li>Simple text adventure.</li>
 <li>Functions to calculate BMI or simple math.</li>
 </ol>
 </div>
-<div class="note-section">
-<label for="note-phase1-2">Notes:</label>
-<textarea id="note-phase1-2" placeholder="Type your notes here..."></textarea>
-</div>
+<div class="note-section"><label>Notes:</label><textarea id="note-phase1-2"></textarea></div>
 </div>
 </div>
 
-<!-- ------------------ Phase 2 ------------------ -->
 <div class="phase">
 <h2>Phase 2 — Developer Skills</h2>
 <div class="resource-card" data-id="phase2-1">
 <div class="resource-content">
 <h3>Modules & Virtual Environments</h3>
-<p>Learn to organize code in modules, simulate environments.</p>
+<p>Organize code and simulate environments.</p>
 <ol>
 <li>Create multiple Python files and import them.</li>
 <li>Understand `__init__.py` and modules.</li>
 <li>Practice writing reusable functions.</li>
 </ol>
 </div>
-<div class="note-section">
-<label for="note-phase2-1">Notes:</label>
-<textarea id="note-phase2-1" placeholder="Type your notes here..."></textarea>
-</div>
+<div class="note-section"><label>Notes:</label><textarea id="note-phase2-1"></textarea></div>
 </div>
 
 <div class="resource-card" data-id="phase2-2">
@@ -108,30 +109,23 @@ h2 {font-size:24px; background:linear-gradient(90deg,var(--accent),var(--accent3
 <li>Create nested data structures for small programs.</li>
 </ol>
 </div>
-<div class="note-section">
-<label for="note-phase2-2">Notes:</label>
-<textarea id="note-phase2-2" placeholder="Type your notes here..."></textarea>
-</div>
+<div class="note-section"><label>Notes:</label><textarea id="note-phase2-2"></textarea></div>
 </div>
 </div>
 
-<!-- ------------------ Phase 3 ------------------ -->
 <div class="phase">
 <h2>Phase 3 — Discord Bot Basics</h2>
 <div class="resource-card" data-id="phase3-1">
 <div class="resource-content">
 <h3>Bot Code Simulation</h3>
-<p>Write functions to simulate bot logic in Python (without connecting to Discord).</p>
+<p>Write functions to simulate bot logic in Python.</p>
 <ol>
 <li>Create functions like `send_message()` or `on_message()`.</li>
-<li>Test your logic in the PyScript terminal.</li>
+<li>Test logic in terminal.</li>
 <li>Practice simple command responses.</li>
 </ol>
 </div>
-<div class="note-section">
-<label for="note-phase3-1">Notes:</label>
-<textarea id="note-phase3-1" placeholder="Type your notes here..."></textarea>
-</div>
+<div class="note-section"><label>Notes:</label><textarea id="note-phase3-1"></textarea></div>
 </div>
 
 <div class="resource-card" data-id="phase3-2">
@@ -141,33 +135,26 @@ h2 {font-size:24px; background:linear-gradient(90deg,var(--accent),var(--accent3
 <ol>
 <li>Define functions like `on_join()`, `on_reaction()`.</li>
 <li>Experiment with conditions and responses.</li>
-<li>Test in terminal using print statements.</li>
+<li>Test using print statements.</li>
 </ol>
 </div>
-<div class="note-section">
-<label for="note-phase3-2">Notes:</label>
-<textarea id="note-phase3-2" placeholder="Type your notes here..."></textarea>
-</div>
+<div class="note-section"><label>Notes:</label><textarea id="note-phase3-2"></textarea></div>
 </div>
 </div>
 
-<!-- ------------------ Phase 4 ------------------ -->
 <div class="phase">
 <h2>Phase 4 — Advanced Discord Bot Concepts</h2>
 <div class="resource-card" data-id="phase4-1">
 <div class="resource-content">
 <h3>Commands & Interactions</h3>
-<p>Learn to design command structure, slash commands simulation.</p>
+<p>Design command structure, slash commands simulation.</p>
 <ol>
 <li>Define command functions like `/help`, `/ping`.</li>
 <li>Simulate responses in terminal.</li>
 <li>Practice arguments and options.</li>
 </ol>
 </div>
-<div class="note-section">
-<label for="note-phase4-1">Notes:</label>
-<textarea id="note-phase4-1" placeholder="Type your notes here..."></textarea>
-</div>
+<div class="note-section"><label>Notes:</label><textarea id="note-phase4-1"></textarea></div>
 </div>
 
 <div class="resource-card" data-id="phase4-2">
@@ -175,57 +162,46 @@ h2 {font-size:24px; background:linear-gradient(90deg,var(--accent),var(--accent3
 <h3>Data Handling & Persistence</h3>
 <p>Simulate saving data using Python dictionaries or JSON.</p>
 <ol>
-<li>Create a JSON file locally in PyScript (simulation).</li>
+<li>Create a JSON file locally (simulation).</li>
 <li>Store user info, points, or settings.</li>
 <li>Practice reading/writing structured data.</li>
 </ol>
 </div>
-<div class="note-section">
-<label for="note-phase4-2">Notes:</label>
-<textarea id="note-phase4-2" placeholder="Type your notes here..."></textarea>
-</div>
+<div class="note-section"><label>Notes:</label><textarea id="note-phase4-2"></textarea></div>
 </div>
 </div>
 
-<!-- ------------------ Phase 5 ------------------ -->
 <div class="phase">
 <h2>Phase 5 — Testing & Deployment</h2>
 <div class="resource-card" data-id="phase5-1">
 <div class="resource-content">
 <h3>Testing Your Code</h3>
-<p>Simulate testing bot commands and logic in Python terminal.</p>
+<p>Simulate testing bot commands and logic.</p>
 <ol>
 <li>Try edge cases in command functions.</li>
 <li>Debug using print statements.</li>
 <li>Refactor functions for clarity.</li>
 </ol>
 </div>
-<div class="note-section">
-<label for="note-phase5-1">Notes:</label>
-<textarea id="note-phase5-1" placeholder="Type your notes here..."></textarea>
-</div>
+<div class="note-section"><label>Notes:</label><textarea id="note-phase5-1"></textarea></div>
 </div>
 
 <div class="resource-card" data-id="phase5-2">
 <div class="resource-content">
 <h3>Simulate Deployment</h3>
-<p>Practice workflow and deployment scripts (simulation in PyScript).</p>
+<p>Practice workflow and deployment scripts.</p>
 <ol>
 <li>Understand script structure for running bots.</li>
 <li>Plan directories, main file, and configs.</li>
 <li>Learn about hosting concepts for later real deployment.</li>
 </ol>
 </div>
-<div class="note-section">
-<label for="note-phase5-2">Notes:</label>
-<textarea id="note-phase5-2" placeholder="Type your notes here..."></textarea>
-</div>
+<div class="note-section"><label>Notes:</label><textarea id="note-phase5-2"></textarea></div>
 </div>
 </div>
 
-<!-- ------------------ Phase 6 ------------------ -->
 <div class="phase">
-<h2>Phase 6 — Real Bot Hosting (Learning Conceptually)</h2>
+<h2>Phase 6 — Real Bot Hosting (Concept)</h2>
 <div class="resource-card" data-id="phase6-1">
 <div class="resource-content">
 <h3>Discord API & Libraries</h3>
@@ -233,13 +209,10 @@ h2 {font-size:24px; background:linear-gradient(90deg,var(--accent),var(--accent3
 <ol>
 <li>Understand event loops and async functions.</li>
 <li>Plan bot structure, commands, and events.</li>
-<li>Conceptually simulate connections (cannot run Discord in browser).</li>
+<li>Simulate connections (cannot run Discord in browser).</li>
 </ol>
 </div>
-<div class="note-section">
-<label for="note-phase6-1">Notes:</label>
-<textarea id="note-phase6-1" placeholder="Type your notes here..."></textarea>
-</div>
+<div class="note-section"><label>Notes:</label><textarea id="note-phase6-1"></textarea></div>
 </div>
 
 <div class="resource-card" data-id="phase6-2">
@@ -252,14 +225,11 @@ h2 {font-size:24px; background:linear-gradient(90deg,var(--accent),var(--accent3
 <li>Utility bot for server stats</li>
 </ol>
 </div>
-<div class="note-section">
-<label for="note-phase6-2">Notes:</label>
-<textarea id="note-phase6-2" placeholder="Type your notes here..."></textarea>
-</div>
+<div class="note-section"><label>Notes:</label><textarea id="note-phase6-2"></textarea></div>
 </div>
 </div>
 
-<!-- ------------------ Embedded Python Terminal ------------------ -->
+<!-- ------------------ Python Terminal ------------------ -->
 <div class="py-terminal">
 <h3>Interactive Python Terminal</h3>
 <textarea id="pycode">print("Hello, Python!")</textarea>
@@ -269,6 +239,19 @@ h2 {font-size:24px; background:linear-gradient(90deg,var(--accent),var(--accent3
 </div>
 
 <script>
+// Login check
+function checkLogin(){
+    const u = document.getElementById('username').value;
+    const p = document.getElementById('password').value;
+    const error = document.getElementById('error');
+    if(u === "ImSoOffline" && p === "6767"){
+        document.getElementById('login-container').style.display = "none";
+        document.getElementById('main-container').style.display = "block";
+    } else {
+        error.innerText = "Incorrect username or password!";
+    }
+}
+
 // PyScript run function
 function runPython(){
     const code = document.getElementById('pycode').value;
@@ -289,15 +272,12 @@ sys.stderr = sys.__stderr__
 print(_output.getvalue())</py-script>`;
 }
 
-// Notes persistence using localStorage
-document.querySelectorAll('.resource-card').forEach(card => {
-    const id = card.dataset.id;
-    const textarea = card.querySelector('textarea');
-    const saved = localStorage.getItem('note-' + id);
-    if(saved) textarea.value = saved;
-    textarea.addEventListener('input', () => {
-        localStorage.setItem('note-' + id, textarea.value);
-    });
+// Notes persistence
+document.querySelectorAll('textarea[id^="note-"]').forEach(t=>{
+    const id = t.id;
+    const saved = localStorage.getItem(id);
+    if(saved) t.value = saved;
+    t.addEventListener('input', ()=>{localStorage.setItem(id, t.value)});
 });
 </script>
 </body>
