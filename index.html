@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Learn Python → Discord Dev — Roadmap</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--muted:#9aa6b2;--accent:#60a5fa;--success:#34d399}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{background:linear-gradient(180deg,#071020 0%, #071423 100%);color:#e6eef6;display:flex;align-items:center;justify-content:center;padding:24px}
+    .container{max-width:980px;width:100%;}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:28px;border-radius:12px;box-shadow:0 6px 30px rgba(2,6,23,0.7);}
+    h1{margin:0 0 6px;font-size:28px}
+    p.lead{color:var(--muted);margin:0 0 16px}
+
+    /* login */
+    .login{display:flex;gap:12px;align-items:center;justify-content:center;margin:22px 0}
+    .pw{padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit;font-size:16px}
+    .btn{background:var(--accent);border:none;padding:10px 14px;border-radius:8px;color:#07203a;font-weight:600;cursor:pointer}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .alert{padding:10px;border-radius:8px;margin-top:12px;color:#0b2a22;background:rgba(52,211,153,0.12);display:inline-block}
+
+    /* content */
+    .roadmap{margin-top:18px;display:none}
+    .phase{background:rgba(255,255,255,0.02);padding:14px;border-radius:10px;margin-bottom:12px}
+    .phase h2{margin:0 0 8px;font-size:18px}
+    a{color:var(--accent);text-decoration:none}
+    ul{margin:8px 0 0 18px}
+    code.inline{background:rgba(255,255,255,0.03);padding:2px 6px;border-radius:6px;font-family:monospace}
+
+    /* small */
+    .small{font-size:13px;color:var(--muted)}
+
+    /* footer */
+    footer{margin-top:16px;color:var(--muted);font-size:13px}
+
+    @media (max-width:640px){h1{font-size:22px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>Learn Python → Discord Developer Roadmap</h1>
+      <p class="lead">Following this guide will take you from zero to a full-fledged Discord bot developer. Enter password to view the full roadmap.</p>
+
+      <div class="login" id="loginBox">
+        <input id="passwordInput" class="pw" type="password" placeholder="Enter password" aria-label="password" />
+        <button id="showBtn" class="btn ghost" type="button">Show</button>
+        <button id="unlockBtn" class="btn" type="button">Unlock</button>
+      </div>
+
+      <div id="message" class="small" aria-live="polite"></div>
+
+      <div class="roadmap" id="roadmap">
+        <!-- Phase 1 -->
+        <div class="phase">
+          <h2>Phase 1 — Python Fundamentals (Week 1–2)</h2>
+          <p class="small">Start with the absolute basics and practice a lot.</p>
+          <ul>
+            <li><strong>Basics:</strong> variables, types, input/output, operators.</li>
+            <li><strong>Links — Videos:</strong>
+              <ul>
+                <li><a href="https://youtu.be/XKHEtdqhLK8" target="_blank">BroCode – Python Full Course (4h)</a></li>
+                <li><a href="https://youtu.be/kqtD5dpn9C8" target="_blank">Mosh – Python Tutorial</a></li>
+                <li><a href="https://youtu.be/rfscVS0vtbw" target="_blank">freeCodeCamp – 4-hour Python</a></li>
+              </ul>
+            </li>
+            <li><strong>Practice Sites:</strong>
+              <ul>
+                <li><a href="https://www.w3schools.com/python/" target="_blank">w3schools Python</a></li>
+                <li><a href="https://www.programiz.com/python-programming" target="_blank">Programiz</a></li>
+                <li><a href="https://www.codecademy.com/learn/learn-python-3" target="_blank">Codecademy (free lessons)</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="phase">
+          <h2>Phase 2 — Developer Skills (Week 2–3)</h2>
+          <ul>
+            <li>Virtual environments (pip, venv). <a href="https://youtu.be/Kg1Yvry_Ydk" target="_blank">Video</a></li>
+            <li>Modules & packages. <a href="https://youtu.be/CqvZ3vGoGs0" target="_blank">Video</a></li>
+          </ul>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="phase">
+          <h2>Phase 3 — Discord Bot Basics (Week 3–4)</h2>
+          <ul>
+            <li><strong>Docs & Portal:</strong>
+              <ul>
+                <li><a href="https://discord.com/developers/applications" target="_blank">Discord Developer Portal</a></li>
+                <li><a href="https://discordpy.readthedocs.io/en/stable/" target="_blank">discord.py docs</a></li>
+              </ul>
+            </li>
+            <li>Setup your bot, run first script — <a href="https://youtu.be/1AGnZ6WLyGY" target="_blank">Beginner tutorial</a></li>
+            <li>Learn events, commands, embeds, UI — see videos in the linked playlist section.</li>
+          </ul>
+        </div>
+
+        <!-- Phase 4 -->
+        <div class="phase">
+          <h2>Phase 4 — Advanced (Week 4–5)</h2>
+          <ul>
+            <li>Cogs & modular code. <a href="https://youtu.be/BHhA_ZKjyxo" target="_blank">Cogs tutorial</a></li>
+            <li>Databases (SQLite/Postgres). <a href="https://youtu.be/gaHg4gZBq44" target="_blank">SQLite guide</a></li>
+            <li>Background tasks, API requests (aiohttp), webhooks — follow linked videos in resources.</li>
+          </ul>
+        </div>
+
+        <!-- Phase 5 -->
+        <div class="phase">
+          <h2>Phase 5 — Expert (Week 5–6)</h2>
+          <ul>
+            <li>Hosting: Replit for quick tests, VPS for production. <a href="https://replit.com" target="_blank">Replit</a></li>
+            <li>Security: environment variables, never commit tokens.</li>
+          </ul>
+        </div>
+
+        <!-- Phase 6 Projects -->
+        <div class="phase">
+          <h2>Phase 6 — Projects (Week 6–7)</h2>
+          <ul>
+            <li>Moderation bot (ban/kick/warn), Economy + XP, Anti-spam systems, Utility bots (weather, translate).</li>
+          </ul>
+        </div>
+
+        <footer>
+          <div class="small">To host on GitHub Pages: create a repo named <code class="inline">username.github.io</code>, add this file as <code class="inline">index.html</code>, push, and visit <code class="inline">https://username.github.io</code>. Replace <code class="inline">username</code> with your GitHub username.</div>
+        </footer>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Password is intentionally hardcoded per user request (6767)
+    const CORRECT = '6767';
+    const pwInput = document.getElementById('passwordInput');
+    const unlockBtn = document.getElementById('unlockBtn');
+    const roadmap = document.getElementById('roadmap');
+    const message = document.getElementById('message');
+    const showBtn = document.getElementById('showBtn');
+
+    showBtn.addEventListener('click', ()=>{
+      if(pwInput.type === 'password'){pwInput.type='text'; showBtn.textContent='Hide'}else{pwInput.type='password'; showBtn.textContent='Show'}
+    });
+
+    function showRoadmap(){
+      roadmap.style.display = 'block';
+      message.innerHTML = '<div class="alert">Unlocked — welcome! ✅</div>';
+      document.getElementById('loginBox').style.display = 'none';
+    }
+
+    function failNote(){
+      message.textContent = 'Incorrect password. Try again.';
+      setTimeout(()=>{ message.textContent = ''; }, 2500);
+    }
+
+    unlockBtn.addEventListener('click', ()=>{
+      const val = pwInput.value.trim();
+      if(val === CORRECT){ showRoadmap(); } else { failNote(); }
+    });
+
+    // allow Enter key
+    pwInput.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter') unlockBtn.click();
+    });
+
+    // optionally allow a URL param like ?pw=6767 to auto-unlock
+    (function(){
+      try{
+        const params = new URLSearchParams(location.search);
+        if(params.get('pw') === CORRECT){ showRoadmap(); }
+      }catch(e){}
+    })();
+  </script>
+</body>
+</html>
