@@ -1,237 +1,316 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Python → Discord Dev Roadmap</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg:#030712;
-      --panel:#0a0f1e;
-      --card:#111827;
-      --text:#e5e7eb;
-      --accent:#3b82f6;
-      --accent2:#22d3ee;
-      --accent3:#a855f7;
-    }
-
-    * {margin:0; padding:0; box-sizing:border-box;}
-    body {
-      background: radial-gradient(circle at 20% 20%, #0f172a, #020617 70%);
-      font-family:"Poppins", sans-serif;
-      color:var(--text);
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:40px;
-      overflow-x:hidden;
-    }
-
-    .glow {
-      position:absolute;
-      width:500px;
-      height:500px;
-      background:radial-gradient(circle, rgba(59,130,246,0.2), transparent 70%);
-      filter:blur(100px);
-      z-index:-1;
-      top:-100px;
-      right:-100px;
-      animation:float 18s ease-in-out infinite alternate;
-    }
-
-    @keyframes float {from{transform:translateY(0);} to{transform:translateY(80px);} }
-
-    .container {
-      width:100%; max-width:1000px;
-      backdrop-filter:blur(20px);
-      background:rgba(255,255,255,0.03);
-      border:1px solid rgba(255,255,255,0.05);
-      padding:28px 32px;
-      border-radius:20px;
-      box-shadow:0 0 40px rgba(0,0,0,0.6);
-      animation:fadeIn 1.4s ease;
-    }
-
-    @keyframes fadeIn {from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:translateY(0);} }
-
-    h1 {
-      font-size:32px;
-      font-weight:700;
-      background:linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
-      -webkit-background-clip:text;
-      color:transparent;
-      margin-bottom:8px;
-    }
-    .sub {color:#9ca3af;margin-bottom:20px;}
-
-    .login {
-      display:flex; gap:12px; margin-bottom:20px;
-    }
-    .pw {
-      width:200px;
-      padding:12px 14px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,0.15);
-      background:rgba(255,255,255,0.03);
-      color:var(--text);
-      font-size:15px;
-    }
-    .btn {
-      padding:12px 16px;
-      border-radius:10px;
-      font-weight:600;
-      cursor:pointer;
-      border:none;
-      color:#020617;
-      background:linear-gradient(90deg, var(--accent), var(--accent2));
-      transition:0.2s;
-    }
-    .btn:hover {filter:brightness(1.15);}    
-    .btn.ghost {
-      background:rgba(255,255,255,0.05);
-      color:var(--text);
-      border:1px solid rgba(255,255,255,0.15);
-    }
-
-    .alert {
-      margin-top:10px;
-      padding:10px 14px;
-      background:rgba(34,197,94,0.12);
-      border-left:4px solid #22c55e;
-      border-radius:8px;
-      color:#bbf7d0;
-    }
-
-    .roadmap {display:none; margin-top:25px; animation:fadeIn 0.8s ease;}
-
-    .phase {
-      background:rgba(255,255,255,0.04);
-      padding:18px 20px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,0.06);
-      margin-bottom:16px;
-      transition:0.3s;
-    }
-
-    .phase:hover {
-      transform:translateY(-4px);
-      box-shadow:0 8px 30px rgba(0,0,0,0.35);
-    }
-
-    h2 {font-size:20px; margin-bottom:8px; background:linear-gradient(90deg, var(--accent), var(--accent3)); -webkit-background-clip:text; color:transparent;}
-    a {color:var(--accent2); text-decoration:none; font-weight:600;}
-    a:hover {text-decoration:underline;}
-
-    ul {margin-left:22px; margin-top:8px; line-height:1.65;}
-    .small {font-size:14px; color:#9ca3af;}
-
-    footer {margin-top:12px; color:#6b7280; font-size:13px;}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Python → Discord Dev Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#030712;
+  --panel:#0a0f1e;
+  --card:#111827;
+  --text:#e5e7eb;
+  --accent:#3b82f6;
+  --accent2:#22d3ee;
+  --accent3:#a855f7;
+}
+* {margin:0; padding:0; box-sizing:border-box;}
+body {background: radial-gradient(circle at 20% 20%, #0f172a, #020617 70%); font-family:"Poppins", sans-serif; color:var(--text); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:40px; overflow-x:hidden;}
+.glow {position:absolute; width:500px; height:500px; background:radial-gradient(circle, rgba(59,130,246,0.2), transparent 70%); filter:blur(100px); z-index:-1; top:-100px; right:-100px; animation:float 18s ease-in-out infinite alternate;}
+@keyframes float {from{transform:translateY(0);} to{transform:translateY(80px);} }
+.container {width:100%; max-width:1000px; backdrop-filter:blur(20px); background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.05); padding:28px 32px; border-radius:20px; box-shadow:0 0 40px rgba(0,0,0,0.6); animation:fadeIn 1.4s ease;}
+@keyframes fadeIn {from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:translateY(0);} }
+h1 {font-size:32px; font-weight:700; background:linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3)); -webkit-background-clip:text; color:transparent; margin-bottom:8px;}
+.sub {color:#9ca3af;margin-bottom:20px;}
+.login {display:flex; gap:12px; margin-bottom:20px; flex-wrap:wrap;}
+.pw, .user {width:180px; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.03); color:var(--text); font-size:15px;}
+.btn {padding:12px 16px; border-radius:10px; font-weight:600; cursor:pointer; border:none; color:#020617; background:linear-gradient(90deg, var(--accent), var(--accent2)); transition:0.2s;}
+.btn:hover {filter:brightness(1.15);}    
+.btn.ghost {background:rgba(255,255,255,0.05); color:var(--text); border:1px solid rgba(255,255,255,0.15);}
+.alert {margin-top:10px; padding:10px 14px; background:rgba(34,197,94,0.12); border-left:4px solid #22c55e; border-radius:8px; color:#bbf7d0;}
+.roadmap {display:none; margin-top:25px; animation:fadeIn 0.8s ease; overflow-y:auto;}
+.phase {background:rgba(255,255,255,0.04); padding:18px 20px; border-radius:14px; border:1px solid rgba(255,255,255,0.06); margin-bottom:16px; transition:0.3s;}
+.phase:hover {transform:translateY(-4px); box-shadow:0 8px 30px rgba(0,0,0,0.35);}
+h2 {font-size:20px; margin-bottom:12px; background:linear-gradient(90deg, var(--accent), var(--accent3)); -webkit-background-clip:text; color:transparent;}
+.resource-card {background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); padding:18px 22px; border-radius:14px; margin-bottom:18px; transition: transform 0.2s, box-shadow 0.2s;}
+.resource-card:hover {transform:translateY(-4px); box-shadow:0 8px 28px rgba(0,0,0,0.35);}
+.resource-card h3 {color:#3b82f6; font-size:18px; margin-bottom:8px;}
+.resource-card p {font-size:14px; margin-bottom:8px;}
+.resource-card ol {margin-left:18px; margin-bottom:12px;}
+.resource-card a {color:#22d3ee; font-weight:600; text-decoration:none;}
+.resource-card a:hover {text-decoration:underline;}
+iframe {width:100%; max-width:560px; height:315px; margin-bottom:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.1);}
+footer {margin-top:12px; color:#6b7280; font-size:13px;}
+</style>
 </head>
 <body>
-
 <div class="glow"></div>
-
 <div class="container">
-  <h1>Python → Discord Developer Roadmap</h1>
-  <p class="sub">Advanced interactive roadmap — locked with password access.</p>
+<h1>Python → Discord Developer Roadmap</h1>
+<p class="sub">Password-protected roadmap with step-by-step instructions.</p>
 
-  <div class="login" id="loginBox">
-    <input id="passwordInput" class="pw" type="password" placeholder="Enter password" />
-    <button id="showBtn" class="btn ghost">Show</button>
-    <button id="unlockBtn" class="btn">Unlock</button>
-  </div>
+<div class="login" id="loginBox">
+<input id="usernameInput" class="user" type="text" placeholder="Username" />
+<input id="passwordInput" class="pw" type="password" placeholder="Password" />
+<button id="showBtn" class="btn ghost">Show</button>
+<button id="unlockBtn" class="btn">Unlock</button>
+</div>
 
-  <div id="message"></div>
+<div id="message"></div>
 
-  <div id="roadmap" class="roadmap">
+<div id="roadmap" class="roadmap">
 
-    <div class="phase">
-      <h2>Phase 1 — Python Fundamentals</h2>
-      <ul>
-        <li><a href="https://youtu.be/XKHEtdqhLK8" target="_blank">BroCode Full Python Course</a></li>
-        <li><a href="https://youtu.be/kqtD5dpn9C8" target="_blank">Mosh Python Tutorial</a></li>
-        <li><a href="https://youtu.be/rfscVS0vtbw" target="_blank">FreeCodeCamp Python</a></li>
-      </ul>
-    </div>
+<!-- Phase 1 -->
+<div class="phase">
+<h2>Phase 1 — Python Fundamentals</h2>
 
-    <div class="phase">
-      <h2>Phase 2 — Dev Skills</h2>
-      <ul>
-        <li><a href="https://youtu.be/Kg1Yvry_Ydk" target="_blank">Virtual Environments</a></li>
-        <li><a href="https://youtu.be/CqvZ3vGoGs0" target="_blank">Modules & Packages</a></li>
-      </ul>
-    </div>
+<div class="resource-card">
+<h3>BroCode Full Python Course</h3>
+<p><strong>Description:</strong> Beginner-friendly 4-hour course covering variables, loops, functions, and small projects.</p>
+<ol>
+<li>Watch the video from start to finish.</li>
+<li>Pause and code along with each example in Python IDE (VS Code/Replit).</li>
+<li>Complete exercises at the end of each section.</li>
+<li>Try creating small scripts implementing learned concepts.</li>
+</ol>
+<iframe src="https://www.youtube.com/embed/XKHEtdqhLK8" frameborder="0" allowfullscreen></iframe>
+<a href="https://youtu.be/XKHEtdqhLK8" target="_blank">Open Video on YouTube</a>
+</div>
 
-    <div class="phase">
-      <h2>Phase 3 — Discord Bot Basics</h2>
-      <ul>
-        <li><a href="https://discord.com/developers/applications" target="_blank">Dev Portal</a></li>
-        <li><a href="https://discordpy.readthedocs.io/en/stable/" target="_blank">discord.py Docs</a></li>
-        <li><a href="https://youtu.be/1AGnZ6WLyGY" target="_blank">First Bot Tutorial</a></li>
-      </ul>
-    </div>
+<div class="resource-card">
+<h3>Mosh Python Tutorial</h3>
+<p><strong>Description:</strong> Shorter tutorial focused on Python basics, variables, loops, and functions.</p>
+<ol>
+<li>Watch the video step by step.</li>
+<li>Code along with exercises.</li>
+<li>Practice small projects at the end of each section.</li>
+</ol>
+<iframe src="https://www.youtube.com/embed/kqtD5dpn9C8" frameborder="0" allowfullscreen></iframe>
+<a href="https://youtu.be/kqtD5dpn9C8" target="_blank">Open Video on YouTube</a>
+</div>
 
-    <div class="phase">
-      <h2>Phase 4 — Advanced Discord Dev</h2>
-      <ul>
-        <li><a href="https://youtu.be/BHhA_ZKjyxo" target="_blank">Cogs System</a></li>
-        <li><a href="https://youtu.be/gaHg4gZBq44" target="_blank">SQLite Tutorial</a></li>
-      </ul>
-    </div>
+<div class="resource-card">
+<h3>freeCodeCamp Python 4-Hour Full Course</h3>
+<p><strong>Description:</strong> Comprehensive beginner tutorial including Python syntax, functions, loops, and projects.</p>
+<ol>
+<li>Watch each section carefully.</li>
+<li>Code along in Python IDE or Replit.</li>
+<li>Take notes and try the exercises at the end of each section.</li>
+</ol>
+<iframe src="https://www.youtube.com/embed/rfscVS0vtbw" frameborder="0" allowfullscreen></iframe>
+<a href="https://youtu.be/rfscVS0vtbw" target="_blank">Open Video on YouTube</a>
+</div>
+</div>
 
-    <div class="phase">
-      <h2>Phase 5 — Hosting & Security</h2>
-      <ul>
-        <li><a href="https://replit.com" target="_blank">Replit Hosting</a></li>
-      </ul>
-    </div>
+<!-- Phase 2 -->
+<div class="phase">
+<h2>Phase 2 — Developer Skills</h2>
 
-    <div class="phase">
-      <h2>Phase 6 — Projects</h2>
-      <ul>
-        <li>Moderation Bot, Economy Bot, XP Bot, Anti-Spam Bot</li>
-      </ul>
-    </div>
+<div class="resource-card">
+<h3>Virtual Environments (venv)</h3>
+<p><strong>Description:</strong> Learn to create isolated Python environments to manage project dependencies.</p>
+<ol>
+<li>Open terminal or command prompt.</li>
+<li>Run <code>python -m venv myenv</code> to create a virtual environment.</li>
+<li>Activate with <code>source myenv/bin/activate</code> (Linux/Mac) or <code>myenv\\Scripts\\activate</code> (Windows).</li>
+<li>Install dependencies using <code>pip install package_name</code>.</li>
+</ol>
+<a href="https://docs.python.org/3/library/venv.html" target="_blank">Official Python Docs</a>
+</div>
 
-    <footer>
-      <p>Create <span class="small">username.github.io</span> repo → upload as <span class="small">index.html</span></p>
-    </footer>
-  </div>
+<div class="resource-card">
+<h3>Python Modules & Packages</h3>
+<p><strong>Description:</strong> Learn to structure Python code using modules and packages.</p>
+<ol>
+<li>Create a Python file <code>my_module.py</code>.</li>
+<li>Import it in another script using <code>import my_module</code>.</li>
+<li>Create folders with <code>__init__.py</code> to make packages.</li>
+<li>Test importing and running functions.</li>
+</ol>
+<a href="https://docs.python.org/3/tutorial/modules.html" target="_blank">Python Modules Tutorial</a>
+</div>
+</div>
+
+<!-- Phase 3 -->
+<div class="phase">
+<h2>Phase 3 — Discord Bot Basics</h2>
+
+<div class="resource-card">
+<h3>Discord Developer Portal & Bot Creation</h3>
+<p><strong>Description:</strong> Create a bot in Discord Developer Portal and get a token.</p>
+<ol>
+<li>Go to <a href="https://discord.com/developers/applications" target="_blank">Discord Developer Portal</a>.</li>
+<li>Click 'New Application' and name it.</li>
+<li>Go to Bot tab and click 'Add Bot'.</li>
+<li>Copy the bot token and store it securely.</li>
+<li>Invite bot to your server using OAuth2 URL.</li>
+</ol>
+</div>
+
+<div class="resource-card">
+<h3>discord.py Documentation</h3>
+<p><strong>Description:</strong> Learn the official library to interact with Discord API.</p>
+<ol>
+<li>Install library: <code>pip install discord.py</code>.</li>
+<li>Create a simple bot that responds to messages.</li>
+<li>Explore events, commands, and more.</li>
+</ol>
+<a href="https://discordpy.readthedocs.io/en/stable/" target="_blank">discord.py Docs</a>
+</div>
+
+<div class="resource-card">
+<h3>First Bot Tutorial (BroCode)</h3>
+<p><strong>Description:</strong> Step-by-step guide to making a bot send messages and respond to events.</p>
+<ol>
+<li>Watch video tutorial.</li>
+<li>Create bot file <code>bot.py</code> and code along.</li>
+<li>Run bot and test commands on your server.</li>
+<li>Try modifying code to experiment.</li>
+</ol>
+<iframe src="https://www.youtube.com/embed/1AGnZ6WLyGY" frameborder="0" allowfullscreen></iframe>
+<a href="https://youtu.be/1AGnZ6WLyGY" target="_blank">Open Video on YouTube</a>
+</div>
+</div>
+
+<!-- Phase 4 -->
+<div class="phase">
+<h2>Phase 4 — Advanced Discord Development</h2>
+
+<div class="resource-card">
+<h3>Command Handling & Cogs</h3>
+<p><strong>Description:</strong> Organize your bot commands and events using cogs.</p>
+<ol>
+<li>Create a folder <code>cogs</code> and Python files for each module.</li>
+<li>Use <code>from discord.ext import commands</code> to define commands in cogs.</li>
+<li>Load cogs in main bot file using <code>bot.load_extension('cogs.filename')</code>.</li>
+<li>Test each cog individually.</li>
+</ol>
+<a href="https://discordpy.readthedocs.io/en/stable/ext/commands/cogs.html" target="_blank">Cogs Documentation</a>
+</div>
+
+<div class="resource-card">
+<h3>Databases for Bots</h3>
+<p><strong>Description:</strong> Learn to store persistent data for your bot using SQLite or MySQL.</p>
+<ol>
+<li>Install SQLite (built-in) or MySQL connector: <code>pip install mysql-connector-python</code>.</li>
+<li>Create a database and tables for your bot.</li>
+<li>Connect bot to database and store/retrieve data.</li>
+<li>Test CRUD operations through bot commands.</li>
+</ol>
+<a href="https://www.sqlitetutorial.net/sqlite-python/" target="_blank">SQLite Tutorial</a>
+</div>
+
+<div class="resource-card">
+<h3>Events, Listeners & Advanced Commands</h3>
+<p><strong>Description:</strong> Implement on_message, on_member_join, and advanced command features.</p>
+<ol>
+<li>Use <code>@bot.event</code> to listen to events.</li>
+<li>Create multiple commands with arguments and checks.</li>
+<li>Test permission checks, cooldowns, and error handling.</li>
+</ol>
+</div>
+</div>
+
+<!-- Phase 5 -->
+<div class="phase">
+<h2>Phase 5 — Hosting & Security</h2>
+
+<div class="resource-card">
+<h3>Hosting on Replit / Railway</h3>
+<p><strong>Description:</strong> Deploy your bot or Python scripts online 24/7.</p>
+<ol>
+<li>Sign up on <a href="https://replit.com" target="_blank">Replit</a> or <a href="https://railway.app" target="_blank">Railway</a>.</li>
+<li>Upload your bot files and <code>requirements.txt</code>.</li>
+<li>Configure environment variables for token.</li>
+<li>Start bot and ensure it runs continuously.</li>
+</ol>
+</div>
+
+<div class="resource-card">
+<h3>Using .env Files</h3>
+<p><strong>Description:</strong> Securely store your Discord token and sensitive info.</p>
+<ol>
+<li>Create a <code>.env</code> file in your project.</li>
+<li>Add <code>DISCORD_TOKEN=your_token_here</code>.</li>
+<li>Install <code>pip install python-dotenv</code>.</li>
+<li>Load token in code: <code>from dotenv import load_dotenv; load_dotenv()</code>.</li>
+</ol>
+<a href="https://pypi.org/project/python-dotenv/" target="_blank">python-dotenv Docs</a>
+</div>
+</div>
+
+<!-- Phase 6 -->
+<div class="phase">
+<h2>Phase 6 — Projects & Real Bot Examples</h2>
+
+<div class="resource-card">
+<h3>Moderation Bot</h3>
+<p><strong>Description:</strong> Build a bot with moderation commands like kick, ban, and mute.</p>
+<ol>
+<li>Create commands for kick, ban, and mute using <code>@bot.command()</code>.</li>
+<li>Check user permissions before executing commands.</li>
+<li>Log actions in a mod-log channel.</li>
+<li>Test thoroughly in a private server.</li>
+</ol>
+</div>
+
+<div class="resource-card">
+<h3>Economy & Leveling Bot</h3>
+<p><strong>Description:</strong> Create a bot with economy, coins, and leveling system.</p>
+<ol>
+<li>Use database to track user coins and levels.</li>
+<li>Create commands for balance, daily rewards, shop, and leaderboard.</li>
+<li>Implement reactions and XP system for leveling.</li>
+<li>Test and debug all commands.</li>
+</ol>
+</div>
+
+<div class="resource-card">
+<h3>Anti-Spam & Utilities</h3>
+<p><strong>Description:</strong> Add anti-spam features and utility commands.</p>
+<ol>
+<li>Monitor messages and delete spam automatically.</li>
+<li>Add commands for server info, user info, and reminders.</li>
+<li>Implement error handling and cooldowns.</li>
+</ol>
+</div>
+</div>
+
+<footer>
+<p>Deploy this on <span class="small">username.github.io</span> as <span class="small">index.html</span> for full roadmap experience.</p>
+</footer>
 </div>
 
 <script>
-  const CORRECT = "6767";
-  const pwInput = document.getElementById("passwordInput");
-  const unlockBtn = document.getElementById("unlockBtn");
-  const showBtn = document.getElementById("showBtn");
-  const roadmap = document.getElementById("roadmap");
-  const msg = document.getElementById("message");
+const CORRECT_USER = "ImSoOffline";
+const CORRECT_PASS = "6767";
+const usernameInput = document.getElementById("usernameInput");
+const pwInput = document.getElementById("passwordInput");
+const unlockBtn = document.getElementById("unlockBtn");
+const showBtn = document.getElementById("showBtn");
+const roadmap = document.getElementById("roadmap");
+const msg = document.getElementById("message");
 
-  showBtn.onclick = () => {
-    pwInput.type = pwInput.type === "password" ? "text" : "password";
-    showBtn.innerText = pwInput.type === "password" ? "Show" : "Hide";
-  };
+showBtn.onclick = () => {
+  const type = pwInput.type === "password" ? "text" : "password";
+  pwInput.type = type;
+  showBtn.innerText = type === "password" ? "Show" : "Hide";
+};
 
-  function unlock() {
-    if (pwInput.value.trim() === CORRECT) {
-      roadmap.style.display = "block";
-      document.getElementById("loginBox").style.display = "none";
-      msg.innerHTML = `<div class='alert'>Access Granted ✔</div>`;
-    } else {
-      msg.innerHTML = `<div class='alert' style='border-left-color:#dc2626;background:rgba(239,68,68,0.12);color:#fecaca;'>Wrong password ✖</div>`;
-      setTimeout(()=> msg.innerHTML = "", 2500);
-    }
+function unlock() {
+  if(usernameInput.value.trim() === CORRECT_USER && pwInput.value.trim() === CORRECT_PASS){
+    roadmap.style.display = "block";
+    document.getElementById("loginBox").style.display = "none";
+    msg.innerHTML = `<div class='alert'>Access Granted ✔</div>`;
+  } else {
+    msg.innerHTML = `<div class='alert' style='border-left-color:#dc2626;background:rgba(239,68,68,0.12);color:#fecaca;'>Wrong username or password ✖</div>`;
+    setTimeout(()=> msg.innerHTML = "", 2500);
   }
+}
 
-  unlockBtn.onclick = unlock;
-  pwInput.onkeydown = e => { if (e.key === "Enter") unlock(); };
+unlockBtn.onclick = unlock;
+usernameInput.onkeydown = pwInput.onkeydown = e => { if(e.key === "Enter") unlock(); };
 </script>
-
 </body>
 </html>
