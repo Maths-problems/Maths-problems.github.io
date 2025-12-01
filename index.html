@@ -1,10 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Python → Discord Dev Roadmap</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
+<script defer src="https://pyscript.net/latest/pyscript.js"></script>
 <style>
 :root {
   --bg:#030712;
@@ -15,220 +17,288 @@
   --accent2:#22d3ee;
   --accent3:#a855f7;
 }
-* {margin:0; padding:0; box-sizing:border-box;}
-body {background: radial-gradient(circle at 20% 20%, #0f172a, #020617 70%); font-family:"Poppins", sans-serif; color:var(--text); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:40px; overflow-x:hidden;}
-.glow {position:absolute; width:500px; height:500px; background:radial-gradient(circle, rgba(59,130,246,0.2), transparent 70%); filter:blur(100px); z-index:-1; top:-100px; right:-100px; animation:float 18s ease-in-out infinite alternate;}
-@keyframes float {from{transform:translateY(0);} to{transform:translateY(80px);} }
-.container {width:100%; max-width:1000px; backdrop-filter:blur(20px); background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.05); padding:28px 32px; border-radius:20px; box-shadow:0 0 40px rgba(0,0,0,0.6); animation:fadeIn 1.4s ease;}
-@keyframes fadeIn {from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:translateY(0);} }
-h1 {font-size:32px; font-weight:700; background:linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3)); -webkit-background-clip:text; color:transparent; margin-bottom:8px;}
-.sub {color:#9ca3af;margin-bottom:20px;}
-.login {display:flex; gap:12px; margin-bottom:20px; flex-wrap:wrap;}
-.pw, .user {width:180px; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.03); color:var(--text); font-size:15px;}
-.btn {padding:12px 16px; border-radius:10px; font-weight:600; cursor:pointer; border:none; color:#020617; background:linear-gradient(90deg, var(--accent), var(--accent2)); transition:0.2s;}
-.btn:hover {filter:brightness(1.15);}    
-.btn.ghost {background:rgba(255,255,255,0.05); color:var(--text); border:1px solid rgba(255,255,255,0.15);}
-.alert {margin-top:10px; padding:10px 14px; background:rgba(34,197,94,0.12); border-left:4px solid #22c55e; border-radius:8px; color:#bbf7d0;}
-.roadmap {display:none; margin-top:25px; animation:fadeIn 0.8s ease; overflow-y:auto;}
-.phase {background:rgba(255,255,255,0.04); padding:18px 20px; border-radius:14px; border:1px solid rgba(255,255,255,0.06); margin-bottom:16px; transition:0.3s;}
-.phase:hover {transform:translateY(-4px); box-shadow:0 8px 30px rgba(0,0,0,0.35);}
-h2 {font-size:20px; margin-bottom:12px; background:linear-gradient(90deg, var(--accent), var(--accent3)); -webkit-background-clip:text; color:transparent;}
-.resource-card {background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); padding:18px 22px; border-radius:14px; margin-bottom:18px; transition: transform 0.2s, box-shadow 0.2s;}
-.resource-card:hover {transform:translateY(-4px); box-shadow:0 8px 28px rgba(0,0,0,0.35);}
+body {margin:0; font-family:"Poppins",sans-serif; background:radial-gradient(circle at 20% 20%, #0f172a, #020617 70%); color:var(--text); padding:40px;}
+.container {max-width:1100px; margin:auto; backdrop-filter:blur(20px); background:rgba(255,255,255,0.03); border-radius:20px; padding:30px; border:1px solid rgba(255,255,255,0.05);}
+h1 {font-size:36px; font-weight:700; background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3)); -webkit-background-clip:text;color:transparent; margin-bottom:16px;}
+.sub {color:#9ca3af;margin-bottom:30px;}
+.phase {background:rgba(255,255,255,0.03); padding:18px 20px; border-radius:14px; border:1px solid rgba(255,255,255,0.06); margin-bottom:20px; transition:0.3s;}
+.phase:hover {transform:translateY(-6px) scale(1.02); box-shadow:0 12px 36px rgba(0,0,0,0.45);}
+h2 {font-size:24px; background:linear-gradient(90deg,var(--accent),var(--accent3)); -webkit-background-clip:text;color:transparent;margin-bottom:12px;}
+.resource-card {background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); padding:18px 22px; border-radius:14px; margin-bottom:18px; transition: transform 0.3s, box-shadow 0.3s; display:flex; flex-direction:row; justify-content:space-between; gap:12px;}
+.resource-card:hover {transform:translateY(-6px) scale(1.01); box-shadow:0 12px 28px rgba(0,0,0,0.45);}
+.resource-content {flex:2;}
 .resource-card h3 {color:#3b82f6; font-size:18px; margin-bottom:8px;}
-.resource-card p {font-size:14px; margin-bottom:8px;}
-.resource-card ol {margin-left:18px; margin-bottom:12px;}
-.resource-card pre {background:rgba(255,255,255,0.05); padding:10px; border-radius:8px; overflow-x:auto;}
-.resource-card a {color:#22d3ee; font-weight:600; text-decoration:none;}
-.resource-card a:hover {text-decoration:underline;}
-iframe {width:100%; max-width:560px; height:315px; margin-bottom:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.1);}
-footer {margin-top:12px; color:#6b7280; font-size:13px;}
+.resource-card p, .resource-card ol, .resource-card li {font-size:14px; margin-bottom:8px;}
+.note-section {flex:1; display:flex; flex-direction:column;}
+.note-section textarea {resize:none; background:rgba(0,0,0,0.8); border-radius:8px; border:1px solid #333; color:#e5e7eb; padding:8px; font-family:monospace; min-height:80px;}
+.note-section label {margin-bottom:6px; font-size:13px; color:#22d3ee;}
+.py-terminal {background:rgba(0,0,0,0.8); padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.1); margin-top:30px;}
+.py-terminal textarea {width:100%; height:120px; border-radius:8px; background:#020617; color:#e5e7eb; border:1px solid #333; padding:8px; font-family:monospace;}
+.py-terminal button {margin-top:6px; padding:8px 12px; border:none; border-radius:8px; background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#020617; cursor:pointer;}
+.py-terminal pre {background:#020617; border-radius:8px; padding:10px; margin-top:8px; overflow-x:auto; max-height:250px;}
 </style>
 </head>
 <body>
-<div class="glow"></div>
 <div class="container">
-<h1>Python → Discord Developer Roadmap</h1>
-<p class="sub">Password-protected roadmap with step-by-step instructions.</p>
+<h1>Python → Discord Dev Roadmap</h1>
+<p class="sub">Fully embedded Python interactive roadmap. Experiment with code and save notes for each step!</p>
 
-<div class="login" id="loginBox">
-<input id="usernameInput" class="user" type="text" placeholder="Username" />
-<input id="passwordInput" class="pw" type="password" placeholder="Password" />
-<button id="showBtn" class="btn ghost">Show</button>
-<button id="unlockBtn" class="btn">Unlock</button>
-</div>
-
-<div id="message"></div>
-
-<div id="roadmap" class="roadmap">
-
-<!-- Phase 1 -->
+<!-- ------------------ Phase 1 ------------------ -->
 <div class="phase">
 <h2>Phase 1 — Python Fundamentals</h2>
-
-<div class="resource-card">
-<h3>BroCode Full Python Course</h3>
-<p><strong>Description:</strong> Beginner-friendly 4-hour course covering variables, loops, functions, and small projects.</p>
+<div class="resource-card" data-id="phase1-1">
+<div class="resource-content">
+<h3>Learn Python Basics</h3>
+<p>Step-by-step: variables, loops, functions, conditionals.</p>
 <ol>
-<li>Watch the video from start to finish.</li>
-<li>Pause and code along with each example in Python IDE (VS Code/Replit).</li>
-<li>Complete exercises at the end of each section.</li>
-<li>Try creating small scripts implementing learned concepts.</li>
+<li>Try examples in the Python terminal below.</li>
+<li>Experiment with print statements, loops, if-else.</li>
+<li>Create a small calculator or text-based program.</li>
 </ol>
-<iframe src="https://www.youtube.com/embed/XKHEtdqhLK8" frameborder="0" allowfullscreen></iframe>
-<a href="https://youtu.be/XKHEtdqhLK8" target="_blank">Open Video on YouTube</a>
+</div>
+<div class="note-section">
+<label for="note-phase1-1">Notes:</label>
+<textarea id="note-phase1-1" placeholder="Type your notes here..."></textarea>
+</div>
 </div>
 
-<div class="resource-card">
-<h3>Mosh Python Tutorial</h3>
-<p><strong>Description:</strong> Shorter tutorial focused on Python basics, variables, loops, and functions.</p>
+<div class="resource-card" data-id="phase1-2">
+<div class="resource-content">
+<h3>Practice Small Projects</h3>
+<p>Mini-projects help reinforce learning.</p>
 <ol>
-<li>Watch the video step by step.</li>
-<li>Code along with exercises.</li>
-<li>Practice small projects at the end of each section.</li>
+<li>Guess the number game.</li>
+<li>Simple text adventure.</li>
+<li>Functions to calculate BMI or simple math.</li>
 </ol>
-<iframe src="https://www.youtube.com/embed/kqtD5dpn9C8" frameborder="0" allowfullscreen></iframe>
-<a href="https://youtu.be/kqtD5dpn9C8" target="_blank">Open Video on YouTube</a>
 </div>
-
-<div class="resource-card">
-<h3>freeCodeCamp Python 4-Hour Full Course</h3>
-<p><strong>Description:</strong> Comprehensive beginner tutorial including Python syntax, functions, loops, and projects.</p>
-<ol>
-<li>Watch each section carefully.</li>
-<li>Code along in Python IDE or Replit.</li>
-<li>Take notes and try the exercises at the end of each section.</li>
-</ol>
-<iframe src="https://www.youtube.com/embed/rfscVS0vtbw" frameborder="0" allowfullscreen></iframe>
-<a href="https://youtu.be/rfscVS0vtbw" target="_blank">Open Video on YouTube</a>
+<div class="note-section">
+<label for="note-phase1-2">Notes:</label>
+<textarea id="note-phase1-2" placeholder="Type your notes here..."></textarea>
+</div>
 </div>
 </div>
 
-<!-- Phase 2 -->
+<!-- ------------------ Phase 2 ------------------ -->
 <div class="phase">
 <h2>Phase 2 — Developer Skills</h2>
-
-<div class="resource-card">
-<h3>Virtual Environments (venv)</h3>
-<p><strong>Description:</strong> Learn to create isolated Python environments to manage project dependencies.</p>
+<div class="resource-card" data-id="phase2-1">
+<div class="resource-content">
+<h3>Modules & Virtual Environments</h3>
+<p>Learn to organize code in modules, simulate environments.</p>
 <ol>
-<li>Open terminal or command prompt.</li>
-<li>Run <code>python -m venv myenv</code> to create a virtual environment.</li>
-<li>Activate with <code>source myenv/bin/activate</code> (Linux/Mac) or <code>myenv\\Scripts\\activate</code> (Windows).</li>
-<li>Install dependencies using <code>pip install package_name</code>.</li>
+<li>Create multiple Python files and import them.</li>
+<li>Understand `__init__.py` and modules.</li>
+<li>Practice writing reusable functions.</li>
 </ol>
-<a href="https://docs.python.org/3/library/venv.html" target="_blank">Official Python Docs</a>
+</div>
+<div class="note-section">
+<label for="note-phase2-1">Notes:</label>
+<textarea id="note-phase2-1" placeholder="Type your notes here..."></textarea>
+</div>
 </div>
 
-<div class="resource-card">
-<h3>Python Modules & Packages</h3>
-<p><strong>Description:</strong> Learn to structure Python code using modules and packages.</p>
+<div class="resource-card" data-id="phase2-2">
+<div class="resource-content">
+<h3>Data Structures</h3>
+<p>Lists, dictionaries, tuples, sets.</p>
 <ol>
-<li>Create a Python file <code>my_module.py</code>.</li>
-<li>Import it in another script using <code>import my_module</code>.</li>
-<li>Create folders with <code>__init__.py</code> to make packages.</li>
-<li>Test importing and running functions.</li>
+<li>Manipulate data with loops.</li>
+<li>Store user input and work with dictionaries.</li>
+<li>Create nested data structures for small programs.</li>
 </ol>
-<a href="https://docs.python.org/3/tutorial/modules.html" target="_blank">Python Modules Tutorial</a>
+</div>
+<div class="note-section">
+<label for="note-phase2-2">Notes:</label>
+<textarea id="note-phase2-2" placeholder="Type your notes here..."></textarea>
+</div>
 </div>
 </div>
 
-<!-- Phase 3 -->
+<!-- ------------------ Phase 3 ------------------ -->
 <div class="phase">
 <h2>Phase 3 — Discord Bot Basics</h2>
-
-<div class="resource-card">
-<h3>Discord Developer Portal & Bot Creation</h3>
-<p><strong>Description:</strong> Create a bot in Discord Developer Portal and get a token.</p>
+<div class="resource-card" data-id="phase3-1">
+<div class="resource-content">
+<h3>Bot Code Simulation</h3>
+<p>Write functions to simulate bot logic in Python (without connecting to Discord).</p>
 <ol>
-<li>Go to <a href="https://discord.com/developers/applications" target="_blank">Discord Developer Portal</a>.</li>
-<li>Click 'New Application' and name it.</li>
-<li>Go to Bot tab and click 'Add Bot'.</li>
-<li>Copy the bot token and store it securely.</li>
-<li>Invite bot to your server using OAuth2 URL.</li>
+<li>Create functions like `send_message()` or `on_message()`.</li>
+<li>Test your logic in the PyScript terminal.</li>
+<li>Practice simple command responses.</li>
 </ol>
 </div>
-
-<div class="resource-card">
-<h3>discord.py Documentation</h3>
-<p><strong>Description:</strong> Learn the official library to interact with Discord API.</p>
-<ol>
-<li>Install library: <code>pip install discord.py</code>.</li>
-<li>Create a simple bot that responds to messages.</li>
-<li>Explore events, commands, and more.</li>
-</ol>
-<a href="https://discordpy.readthedocs.io/en/stable/" target="_blank">discord.py Docs</a>
+<div class="note-section">
+<label for="note-phase3-1">Notes:</label>
+<textarea id="note-phase3-1" placeholder="Type your notes here..."></textarea>
+</div>
 </div>
 
-<div class="resource-card">
-<h3>First Bot Tutorial (BroCode) — Text Guide</h3>
-<p><strong>Description:</strong> Step-by-step guide to making a bot send messages and respond to events.</p>
+<div class="resource-card" data-id="phase3-2">
+<div class="resource-content">
+<h3>Events & Commands</h3>
+<p>Simulate event handling in Python functions.</p>
 <ol>
-<li>Create a Python file <code>bot.py</code>.</li>
-<li>Install discord.py: <code>pip install discord.py</code></li>
-<li>Copy the following code:</li>
-<pre>
-import discord
-from discord.ext import commands
-
-intents = discord.Intents.default()
-intents.message_content = True
-bot = commands.Bot(command_prefix="!", intents=intents)
-
-@bot.event
-async def on_ready():
-    print(f"Logged in as {bot.user}")
-
-@bot.command()
-async def hello(ctx):
-    await ctx.send("Hello! I am your bot.")
-
-bot.run("YOUR_BOT_TOKEN")
-</pre>
-<li>Run with <code>python bot.py</code> and test commands.</li>
-<li>Modify commands and experiment with new ones.</li>
+<li>Define functions like `on_join()`, `on_reaction()`.</li>
+<li>Experiment with conditions and responses.</li>
+<li>Test in terminal using print statements.</li>
 </ol>
-<p><strong>Alternative Video Guide:</strong></p>
-<iframe src="https://www.youtube.com/embed/5qR0h-EjRjA" frameborder="0" allowfullscreen></iframe>
-<a href="https://youtu.be/5qR0h-EjRjA" target="_blank">Open Video on YouTube</a>
+</div>
+<div class="note-section">
+<label for="note-phase3-2">Notes:</label>
+<textarea id="note-phase3-2" placeholder="Type your notes here..."></textarea>
+</div>
+</div>
 </div>
 
-<!-- Phases 4-6 remain the same as before (Advanced, Hosting, Projects) -->
+<!-- ------------------ Phase 4 ------------------ -->
+<div class="phase">
+<h2>Phase 4 — Advanced Discord Bot Concepts</h2>
+<div class="resource-card" data-id="phase4-1">
+<div class="resource-content">
+<h3>Commands & Interactions</h3>
+<p>Learn to design command structure, slash commands simulation.</p>
+<ol>
+<li>Define command functions like `/help`, `/ping`.</li>
+<li>Simulate responses in terminal.</li>
+<li>Practice arguments and options.</li>
+</ol>
+</div>
+<div class="note-section">
+<label for="note-phase4-1">Notes:</label>
+<textarea id="note-phase4-1" placeholder="Type your notes here..."></textarea>
+</div>
+</div>
 
-<footer>
-<p>Deploy this on <span class="small">username.github.io</span> as <span class="small">index.html</span> for full roadmap experience.</p>
-</footer>
+<div class="resource-card" data-id="phase4-2">
+<div class="resource-content">
+<h3>Data Handling & Persistence</h3>
+<p>Simulate saving data using Python dictionaries or JSON.</p>
+<ol>
+<li>Create a JSON file locally in PyScript (simulation).</li>
+<li>Store user info, points, or settings.</li>
+<li>Practice reading/writing structured data.</li>
+</ol>
+</div>
+<div class="note-section">
+<label for="note-phase4-2">Notes:</label>
+<textarea id="note-phase4-2" placeholder="Type your notes here..."></textarea>
+</div>
+</div>
+</div>
+
+<!-- ------------------ Phase 5 ------------------ -->
+<div class="phase">
+<h2>Phase 5 — Testing & Deployment</h2>
+<div class="resource-card" data-id="phase5-1">
+<div class="resource-content">
+<h3>Testing Your Code</h3>
+<p>Simulate testing bot commands and logic in Python terminal.</p>
+<ol>
+<li>Try edge cases in command functions.</li>
+<li>Debug using print statements.</li>
+<li>Refactor functions for clarity.</li>
+</ol>
+</div>
+<div class="note-section">
+<label for="note-phase5-1">Notes:</label>
+<textarea id="note-phase5-1" placeholder="Type your notes here..."></textarea>
+</div>
+</div>
+
+<div class="resource-card" data-id="phase5-2">
+<div class="resource-content">
+<h3>Simulate Deployment</h3>
+<p>Practice workflow and deployment scripts (simulation in PyScript).</p>
+<ol>
+<li>Understand script structure for running bots.</li>
+<li>Plan directories, main file, and configs.</li>
+<li>Learn about hosting concepts for later real deployment.</li>
+</ol>
+</div>
+<div class="note-section">
+<label for="note-phase5-2">Notes:</label>
+<textarea id="note-phase5-2" placeholder="Type your notes here..."></textarea>
+</div>
+</div>
+</div>
+
+<!-- ------------------ Phase 6 ------------------ -->
+<div class="phase">
+<h2>Phase 6 — Real Bot Hosting (Learning Conceptually)</h2>
+<div class="resource-card" data-id="phase6-1">
+<div class="resource-content">
+<h3>Discord API & Libraries</h3>
+<p>Learn Discord.py or Pycord concepts (simulation in terminal).</p>
+<ol>
+<li>Understand event loops and async functions.</li>
+<li>Plan bot structure, commands, and events.</li>
+<li>Conceptually simulate connections (cannot run Discord in browser).</li>
+</ol>
+</div>
+<div class="note-section">
+<label for="note-phase6-1">Notes:</label>
+<textarea id="note-phase6-1" placeholder="Type your notes here..."></textarea>
+</div>
+</div>
+
+<div class="resource-card" data-id="phase6-2">
+<div class="resource-content">
+<h3>Project Ideas</h3>
+<p>Plan full bot projects.</p>
+<ol>
+<li>Moderation bot</li>
+<li>Fun mini-games bot</li>
+<li>Utility bot for server stats</li>
+</ol>
+</div>
+<div class="note-section">
+<label for="note-phase6-2">Notes:</label>
+<textarea id="note-phase6-2" placeholder="Type your notes here..."></textarea>
+</div>
+</div>
+</div>
+
+<!-- ------------------ Embedded Python Terminal ------------------ -->
+<div class="py-terminal">
+<h3>Interactive Python Terminal</h3>
+<textarea id="pycode">print("Hello, Python!")</textarea>
+<button onclick="runPython()">Run Code</button>
+<pre id="pyoutput"></pre>
+<py-script id="pyscript" output="pyoutput"></py-script>
 </div>
 
 <script>
-const CORRECT_USER = "ImSoOffline";
-const CORRECT_PASS = "6767";
-const usernameInput = document.getElementById("usernameInput");
-const pwInput = document.getElementById("passwordInput");
-const unlockBtn = document.getElementById("unlockBtn");
-const showBtn = document.getElementById("showBtn");
-const roadmap = document.getElementById("roadmap");
-const msg = document.getElementById("message");
-
-showBtn.onclick = () => {
-  const type = pwInput.type === "password" ? "text" : "password";
-  pwInput.type = type;
-  showBtn.innerText = type === "password" ? "Show" : "Hide";
-};
-
-function unlock() {
-  if(usernameInput.value.trim() === CORRECT_USER && pwInput.value.trim() === CORRECT_PASS){
-    roadmap.style.display = "block";
-    document.getElementById("loginBox").style.display = "none";
-    msg.innerHTML = `<div class='alert'>Access Granted ✔</div>`;
-  } else {
-    msg.innerHTML = `<div class='alert' style='border-left-color:#dc2626;background:rgba(239,68,68,0.12);color:#fecaca;'>Wrong username or password ✖</div>`;
-    setTimeout(()=> msg.innerHTML = "", 2500);
-  }
+// PyScript run function
+function runPython(){
+    const code = document.getElementById('pycode').value;
+    const output = document.getElementById('pyoutput');
+    const pyscript = document.getElementById('pyscript');
+    pyscript.innerHTML = `<py-script>import sys
+from io import StringIO
+_code = """${code}"""
+_output = StringIO()
+sys.stdout = _output
+sys.stderr = _output
+try:
+    exec(_code)
+except Exception as e:
+    print(e)
+sys.stdout = sys.__stdout__
+sys.stderr = sys.__stderr__
+print(_output.getvalue())</py-script>`;
 }
 
-unlockBtn.onclick = unlock;
-usernameInput.onkeydown = pwInput.onkeydown = e => { if(e.key === "Enter") unlock(); };
+// Notes persistence using localStorage
+document.querySelectorAll('.resource-card').forEach(card => {
+    const id = card.dataset.id;
+    const textarea = card.querySelector('textarea');
+    const saved = localStorage.getItem('note-' + id);
+    if(saved) textarea.value = saved;
+    textarea.addEventListener('input', () => {
+        localStorage.setItem('note-' + id, textarea.value);
+    });
+});
 </script>
 </body>
 </html>
